@@ -83,6 +83,14 @@ Glasshouse Home displays a clock and date (following the TV's 12-hour or 24-hour
 
     ![A minimal Glasshouse Home: Alternative View with the clock, Last watched and CEC addresses off, apps and one input over the Abstract wallpaper](../screenshots/home-minimal.jpg)
 
+-   **Carousel View**
+
+    ---
+
+    A greeting over a larger clock, with the weather on the right in place of Last watched and the Picture details plate. The Apps row sits in a glass frame as wide tiles: where an app's icon is its logo on a solid colour, the tile takes that colour and the icon fills its height; any other icon sits on the glass. The Recommended row shows its title alone until **Down** reaches it, and keeps its height meanwhile, so the rows below do not move. **Down** from the last row reaches **All apps** at the foot, a panel of every app not hidden, those in More apps too; **Back** or **Back to the carousel** closes it. More apps, arranging, search and Recent apps work as in the other views. It is off by default and takes the place of Alternative View.
+
+    **Weather** sets the place by name, which Open-Meteo looks up once; it is kept in `/var/lib/tvweb/home-weather.json`. The TV then reads the current conditions from Open-Meteo at most every 15 minutes, sending only the place's coordinates, and nothing while no place is set. A reading over three hours old is not shown. The temperature is in °C or °F, as chosen beside it.
+
 -   **Fade in and out**
 
     ---
@@ -185,7 +193,7 @@ Rows and tiles can be arranged from the **web dashboard**, the **TV app**, or **
 
 The Home tab's **Home customisation** section holds what applies to whichever Home is the TV's, in one column with each switch on the right:
 
-* While Glasshouse Home is on: **Open Home at power-on**, Glasshouse Home's own options (**Hide LG's Home while the TV starts**, **Picture details**, **Clock and date**, **Rows along the bottom**, **Alternative View**, **Last watched**, **App count**, **CEC addresses**, **Search**, **Fade in and out**).
+* While Glasshouse Home is on: **Open Home at power-on**, Glasshouse Home's own options (**Hide LG's Home while the TV starts**, **Picture details**, **Clock and date**, **Rows along the bottom**, **Alternative View**, **Carousel View**, **Weather**, **Last watched**, **App count**, **CEC addresses**, **Search**, **Fade in and out**).
 * While LG's Home is: **Open Home at power-on**, **Home screen layout** and **Hide home screen system apps**.
 
 Each appears where the TV has it. A TV Glasshouse Home is not offered on, such as a B8 with webOS 4.4, still has the Home tab for these; there it holds Open Home at power-on and Hide home screen system apps. The TV app's Home section has the same rows.

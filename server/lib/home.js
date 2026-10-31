@@ -380,7 +380,7 @@ function normalise(raw) {
   d.picture = raw.picture === true;
   SHOW_KEYS.forEach(function (k) { d[k] = raw[k] !== false; });
   d.rowsBottom = raw.rowsBottom === true;
-  d.view = raw.view === 'alternative' ? 'alternative' : 'standard';
+  d.view = raw.view === 'alternative' || raw.view === 'carousel' ? raw.view : 'standard';
   d.search = raw.search === true;
   d.recommended = raw.recommended === true;
   // Its cards come and go with the apps' lists, so it keeps no order of its own.

@@ -69,6 +69,7 @@ assets/dashboard-app/packageinfo.json assets/dashboard-app/install-app.sh \
 assets/dashboard-app/assets/icon80.png assets/dashboard-app/assets/icon130.png \
 assets/home.html assets/home-app/appinfo.json assets/home-app/index.html assets/home-app/packageinfo.json \
 assets/home-app/assets/icon80.png assets/home-app/assets/icon130.png \
+assets/home-carousel.css assets/home-carousel.js assets/ui/home-carousel.js lib/home-weather.js \
 assets/fonts/Outfit.ttf assets/fonts/Manrope.ttf \
 assets/fonts/Outfit-Light.ttf assets/fonts/Outfit-Regular.ttf \
 assets/fonts/Manrope-Regular.ttf assets/fonts/Manrope-SemiBold.ttf \

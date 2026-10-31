@@ -340,6 +340,7 @@ html.faded #stage{opacity:0}
   #wall .layer{-webkit-animation:none;animation:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/home-carousel.css">
 </head>
 <body>
 <div id="stage" class="no-search">
@@ -401,6 +402,7 @@ html.faded #stage{opacity:0}
 </div>
 
 <script src="/assets/i18n.js"></script>
+<script src="/assets/home-carousel.js"></script>
 <script>
 /*
  * Glasshouse Home's view. Everything comes from /api/home/*: the layout shared
@@ -1311,7 +1313,7 @@ html.faded #stage{opacity:0}
     $('stage').className = (state.arranging ? 'arranging' : '') + (recents.open ? ' recents' : '') +
       (finder.open ? ' finding' : '') + (finder.typing ? ' typing' : '') + (searchOn() ? '' : ' no-search') + (folder.open ? ' folder' : '') +
       (layout && layout.showClock === false ? ' no-clock' : '') + (layout && layout.rowsBottom === true ? ' rows-bottom' : '') +
-      (layout && layout.view === 'alternative' ? ' alternative' : '');
+      (layout && layout.view === 'alternative' ? ' alternative' : '') + (layout && layout.view === 'carousel' ? ' carousel' : '');
   }
 
   // ---------------------------------------------------------------- more apps

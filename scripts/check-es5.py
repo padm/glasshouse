@@ -242,5 +242,6 @@ else:
     assets = root / 'server' / 'assets'
     targets += [assets / 'i18n.js', assets / 'qr.js', assets / 'dashboard.html', assets / 'setup.html',
                 assets / 'setup-phone.html', assets / 'home.html', assets / 'home-app' / 'index.html']
+    targets.append(assets / 'home-carousel.js')
 
 sys.exit(1 if sum(check(t) for t in targets) else 0)

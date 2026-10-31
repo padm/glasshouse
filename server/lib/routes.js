@@ -21,6 +21,7 @@ var ha = require('./ha');
 var fetchLib = require('./fetch');
 var devtools = require('./devtools');
 var names = require('./names');
+var homeWeather = require('./home-weather');
 
 var HA_CATEGORIES = ha.HA_CATEGORIES;
 var HA_ENTITIES = ha.HA_ENTITIES;
@@ -1155,6 +1156,7 @@ function handleHomeRoute(req, res, u, pathname) {
     }
     if (pathname === '/api/home/guide') return homeModule.guide(function (g) { reply({ ok: true, guide: g }); });
     if (pathname === '/api/home/now') return homeModule.now(reply);
+    if (pathname === '/api/home/weather') return homeWeather.status(reply);
     if (pathname === '/api/home/picture') {
       return homePictureModule.picture(String(u.query && u.query.kind || ''), Number(u.query && u.query.port), reply,
         String(u.query && u.query.app || ''));
@@ -1206,6 +1208,7 @@ function handleHomeRoute(req, res, u, pathname) {
       if (pathname === '/api/home/layout') return homeModule.setLayout(body, reply);
       if (pathname === '/api/home/start-layout') return homeModule.setHideLgHomeAtStart(body, reply);
       if (pathname === '/api/home/wallpapers') return homeModule.setWallpapers(body, reply);
+      if (pathname === '/api/home/weather') return homeWeather.setPlace(body, reply);
       if (pathname === '/api/home/enable') return homeModule.enable(reply);
       if (pathname === '/api/home/disable') return homeModule.disable(reply);
       if (pathname === '/api/home/open') return homeModule.open(body, reply);

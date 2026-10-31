@@ -1,0 +1,120 @@
+/* Carousel View: Glasshouse Home with the layout's view set to carousel,
+   which home.html marks on the stage. Every rule here is under .carousel, so
+   the other views are as home.html draws them. What this view adds - the
+   greeting, the weather, All apps - is home-carousel.js's.
+
+   Chromium 38 (webOS 3) draws an outline square whatever the corners, so the
+   rounded tiles are framed with a box-shadow instead. */
+
+.carousel #scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.32) 30%,rgba(0,0,0,.42) 62%,rgba(0,0,0,.7) 100%)}
+
+/* The clock with a greeting over it on the left, the weather on the right. */
+.carousel #now{height:300px;padding:40px 112px 0;-webkit-align-items:flex-start;align-items:flex-start}
+.carousel #when{width:auto}
+.carousel #source,.carousel #plate{display:none}
+.carousel #clock{font-size:150px;letter-spacing:-3px}
+.carousel #date{margin-top:20px;font-size:30px;color:#d6d1c8}
+#ghGreet,#ghWeather,#ghBar,#ghAll{display:none}
+.carousel #ghGreet{display:block;font-size:26px;letter-spacing:5px;color:#c9c4bb;margin:0 0 22px 4px}
+.carousel #ghWeather.on{display:block;margin-left:auto;text-align:right;padding-top:10px}
+#ghWeather .top{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:flex-end;justify-content:flex-end}
+#ghWeather svg{width:70px;height:70px;margin-right:36px;color:#ece7df}
+#ghWeather .temp{font-family:'Outfit',sans-serif;font-size:84px;font-weight:300;line-height:1;letter-spacing:-1px}
+#ghWeather .place{font-size:28px;font-weight:600;margin-top:18px}
+#ghWeather .cond{font-size:24px;color:#c9c4bb;margin-top:10px}
+#ghWeather .src{font-size:15px;color:#8a857d;margin-top:12px}
+
+/* The rows from under the clock down, room left at the foot for All apps. */
+.carousel #rows{top:300px;bottom:76px}
+.carousel #rows:before{-webkit-flex:0 0 0;flex:0 0 0}
+.carousel.rows-bottom #rows:before{-webkit-flex:1 1 0;flex:1 1 0}
+.carousel .row{margin-bottom:14px}
+.carousel .row h2{font-size:26px;font-weight:600;color:#ece7df;margin-bottom:8px}
+.carousel .row h2 span{font-weight:400;color:#a39d93}
+
+/* The Apps row in its glass frame. Its sides stay 22px, which the view's
+   scrolling takes a row's padding to be. */
+.carousel .row[data-key="app"] .wrap{padding:14px 22px;border-radius:40px;background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.carousel .wrap{padding-top:8px;padding-bottom:8px}
+.carousel .wrap .edge.l{background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
+.carousel .wrap .edge.r{background:linear-gradient(270deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.carousel .tile{border-radius:18px;opacity:1;background:rgba(255,255,255,.07);
+  -webkit-transition:background-color .12s,box-shadow .12s,-webkit-transform .12s;transition:background-color .12s,box-shadow .12s,transform .12s}
+.carousel .row:not(.active) .tile{opacity:.9}
+.carousel .tile.focus{outline-color:transparent;background-color:rgba(255,255,255,.13);
+  box-shadow:0 0 0 3px #f4f1ea,0 14px 34px rgba(0,0,0,.5);-webkit-transform:scale(1.035);transform:scale(1.035)}
+.carousel.arranging .tile.focus{box-shadow:0 0 0 3px #e9ad55}
+.carousel.arranging .tile.held{box-shadow:none}
+.carousel .row .tile.hidden{opacity:.3}
+.carousel .row .tile.folded{opacity:.5}
+/* All apps in focus: the rows show no focus of their own. */
+.gh-bar .carousel #rows .tile.focus{box-shadow:none;-webkit-transform:none;transform:none;background-color:rgba(255,255,255,.07)}
+
+/* App tiles: the icon on its own colour (ghFill), else on the glass. */
+.carousel .app{width:280px;height:158px;padding:0;margin-right:28px;overflow:hidden;text-align:center;
+  display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center}
+.carousel .app img{width:112px;height:112px;margin:0;border-radius:18px}
+.carousel .app.gh-fill img{width:158px;height:158px;border-radius:0}
+.carousel .app .mono{width:auto;height:auto;margin:0;background:none;font-size:30px;font-weight:400;line-height:1.2;padding:0 20px;
+  white-space:normal}
+.carousel .app .nm{display:none}
+.carousel .app .fold{margin:0}
+
+/* Recommended, opening under the Apps row once Down reaches it. Closed, it
+   keeps its height, so the rows below stay put, and the pointer can still
+   find its cards. */
+.carousel .row[data-key="rec"] h2{font-size:23px;font-weight:400;margin-bottom:4px}
+.carousel .row[data-key="rec"] h2:after{content:"";display:inline-block;width:9px;height:9px;margin-left:16px;vertical-align:4px;
+  border:solid #a39d93;border-width:2px 2px 0 0;-webkit-transform:rotate(135deg);transform:rotate(135deg);
+  -webkit-transition:-webkit-transform .2s;transition:transform .2s}
+.carousel .row[data-key="rec"].active h2:after{vertical-align:-1px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+.carousel .row[data-key="rec"] .wrap{-webkit-transition:opacity .25s;transition:opacity .25s}
+.carousel:not(.arranging) .row[data-key="rec"]:not(.active) .wrap{opacity:0}
+.carousel .rec{width:272px;padding:6px;margin-right:22px;background:none}
+.carousel .rec .pic{width:260px;height:146px;border-radius:12px}
+.carousel .rec .nm{font-size:20px;font-weight:400;margin-top:8px}
+.carousel .rec .cat{position:absolute;left:14px;top:14px;max-width:244px;margin:0;padding:3px 10px;border-radius:8px;
+  background:rgba(0,0,0,.62);color:#ece7df;font-size:16px}
+
+.carousel .dev{width:380px;height:124px;margin-right:24px;padding:16px 22px}
+.carousel .ch{margin-right:24px}
+
+/* More apps, the Apps row's folder, as a glass panel. Its grid keeps the
+   view's nine to a line, which its keys count on. */
+.carousel #folder{left:64px;right:64px;top:296px;bottom:56px;padding:44px 54px 0;border-radius:44px;
+  background:rgba(12,15,22,.97);border:1px solid rgba(255,255,255,.13)}
+.carousel #folder .gwrap{height:600px}
+.carousel #folderGrid .app{width:168px;height:118px;margin:0 8px 14px 0}
+.carousel #folderGrid .app.gh-fill img{width:118px;height:118px}
+.carousel #folderGrid .app img{width:84px;height:84px}
+
+/* All apps: along the foot, and the panel it opens. */
+.carousel #ghBar{display:-webkit-flex;display:flex;position:absolute;left:50%;bottom:16px;-webkit-transform:translateX(-50%);transform:translateX(-50%);
+  -webkit-align-items:center;align-items:center;padding:9px 30px 9px 24px;border-radius:26px;font-size:22px;color:#d6d1c8;
+  background:rgba(255,255,255,.06);-webkit-transition:background-color .12s,box-shadow .12s;transition:background-color .12s,box-shadow .12s}
+.carousel.arranging #ghBar,.carousel.folder #ghBar,.carousel.recents #ghBar,.carousel.finding #ghBar,.gh-all .carousel #ghBar{visibility:hidden}
+#ghBar:before{content:"";width:10px;height:10px;margin:-6px 18px 0 0;border:solid currentColor;border-width:0 2px 2px 0;
+  -webkit-transform:rotate(45deg);transform:rotate(45deg)}
+.gh-bar .carousel #ghBar{color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 0 3px #f4f1ea}
+
+.gh-all .carousel #ghAll{display:block;position:absolute;z-index:2;left:64px;right:64px;top:296px;bottom:56px;padding:44px 54px 0;
+  border-radius:44px;background:rgba(12,15,22,.97);border:1px solid rgba(255,255,255,.13)}
+.gh-all .carousel #rows,.gh-all .carousel #now{opacity:.2}
+#ghAll .head{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start}
+#ghAll .head div{-webkit-flex:1 1 auto;flex:1 1 auto}
+#ghAll h2{font-family:'Outfit',sans-serif;font-size:44px;font-weight:300;color:#ece7df}
+#ghAll p{font-size:22px;color:#c9c4bb;margin-top:10px}
+#ghAll .back{font-size:22px;padding:12px 24px;border-radius:26px;border:1px solid rgba(255,255,255,.3);color:#ece7df}
+#ghAll .back.focus{background:rgba(255,255,255,.16);box-shadow:0 0 0 3px #f4f1ea;border-color:transparent}
+#ghAll .gwrap{position:absolute;left:0;right:0;top:170px;bottom:0;overflow:hidden;padding:12px 0}
+/* Five 280px tiles to a line, which the panel's keys count on. */
+#ghAllGrid{width:1520px;margin:0 auto;-webkit-transition:-webkit-transform .28s cubic-bezier(.2,.7,.2,1);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
+#ghAllGrid .tile{display:-webkit-inline-flex;display:inline-flex;vertical-align:top;margin:0 30px 30px 0}
+#ghAllGrid .tile:nth-child(5n){margin-right:0}
+#ghAll .msg{font-size:22px;color:#e9ad55;margin-top:10px}
+
+@media (prefers-reduced-motion:reduce){
+  .carousel .tile,.carousel .row[data-key="rec"] .wrap,#ghAllGrid{-webkit-transition:none;transition:none}
+}

@@ -1083,6 +1083,27 @@
       </div>
       <div class="prot-status"><button type="button" class="pill idle" id="home-alternative" onclick="homeAlternative()">&mdash;</button></div>
     </div>
+    <div class="prot-row home-gh-row" id="home-carousel-row" hidden>
+      <div class="prot-main">
+        <div class="prot-title" data-t="home.carouselView">Carousel View</div>
+        <div class="prot-desc" data-t="home.carouselViewDesc">A greeting over a larger clock with the weather beside it, the apps as wide tiles in a glass carousel, Recommended opening under it, and All apps along the foot. In place of Alternative View.</div>
+      </div>
+      <div class="prot-status"><button type="button" class="pill idle" id="home-carousel" onclick="homeCarousel()">&mdash;</button></div>
+    </div>
+    <div class="prot-row home-gh-row" id="home-weather-row" hidden>
+      <div class="prot-main">
+        <div class="prot-title" data-t="home.weather">Weather</div>
+        <div class="prot-desc" data-t="home.weatherDesc">Beside the clock in Carousel View, from Open-Meteo. The TV sends it the place’s coordinates and nothing else; with no place, nothing is sent.</div>
+        <form class="toast-form" id="home-weather-form" onsubmit="event.preventDefault();homeWeatherSave();">
+          <input type="text" id="home-weather-place" placeholder="Town or city" data-t-placeholder="home.weatherPlace" maxlength="80" autocomplete="off">
+          <button type="submit" id="home-weather-save" data-t="home.weatherSave">Save</button>
+        </form>
+        <div class="prot-desc" id="home-weather-now">&mdash;</div>
+      </div>
+      <div class="prot-status"><select class="pill-sel" id="home-weather-unit" aria-label="Temperature unit" data-t-aria-label="home.weatherUnit" onchange="homeWeatherSave(true)">
+        <option value="celsius" translate="no">°C</option><option value="fahrenheit" translate="no">°F</option>
+      </select></div>
+    </div>
     <div class="prot-row home-gh-row home-show-row" hidden>
       <div class="prot-main">
         <div class="prot-title" data-t="home.showLast">Last watched</div>
@@ -1785,6 +1806,7 @@
 <script src="/assets/ui/apps.js"></script>
 <script src="/assets/ui/install.js"></script>
 <script src="/assets/ui/home.js"></script>
+<script src="/assets/ui/home-carousel.js"></script>
 <script src="/assets/ui/audio.js"></script>
 <script src="/assets/ui/picture.js"></script>
 <script src="/assets/ui/servicemenu.js"></script>

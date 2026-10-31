@@ -193,6 +193,7 @@ function renderHome() {
     updateToggle(alt, { cls: on ? 'good' : 'idle', label: on ? t('common.on', 'On') : t('common.off', 'Off') });
     alt.disabled = !homeWritable();
   }
+  renderHomeCarousel(st);
   const hide = q('home-hide-lg');
   if (hide) {
     const armed = homeArmed === 'hide';

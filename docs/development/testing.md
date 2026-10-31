@@ -247,6 +247,8 @@ and Back or a Home relaunch cancelling a delayed panel reply.
 
 `test-home-date.js` runs Glasshouse Home's date with the browser's default locale at en-US, as on webOS 10: a Russian page gets Russian words with the month as it follows a number (`24 октября`), and the line starts with a capital, an English page is unchanged, and a browser without `formatToParts` still uses the page's language. It is skipped on a node without full ICU.
 
+`test-home-carousel.js` checks that the layout keeps Carousel View as a view, and the weather it shows with Open-Meteo stubbed: nothing sent without a place, a place looked up once by name in the dashboard's language and saved, the conditions read again no sooner than 15 minutes and at once for a new unit, a failed read keeping the last reading until it is three hours old, a place not found leaving the saved one, and an empty name removing it. `check-es5.py` and `check-strings.py` also read `assets/home-carousel.js`, the view's script, which home.html loads beside its own.
+
 `test-home-search.js` feeds a G3's real answer for "Dune" to Glasshouse
 Home's search: one film on three services is one title, only the TV's apps
 are listed, a listed title opens in its app at the id LG's item detail gives,

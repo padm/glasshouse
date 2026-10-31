@@ -121,6 +121,8 @@ Switching Glasshouse Home off reports a Home-key restore failure, including a sa
 
 Home wallpapers uploaded through the browser go into `/var/lib/tvweb/home-wallpaper-uploads`, one for each time of day; a set chosen on the Home tab is downloaded from the `v2` tag of `rorygallagher2024/glasshouse-wallpapers` into `/var/lib/tvweb/home-wallpaper-sets/<set>`, and the choice is kept in `/var/lib/tvweb/home-wallpaper.json`. The directories are excluded from packages and rollback copies and removed with the server. Failed LG Home restoration remains visible and retryable on both dashboards.
 
+The place chosen for Carousel View's weather, with its coordinates and the temperature unit, is kept in `/var/lib/tvweb/home-weather.json`, removed with the server.
+
 Glasshouse Home leaves empty rows out and centres the remaining rows below the clock. Empty rows reappear as movable strips while arranging.
 
 Glasshouse Home's text and accent colours are saved in `/var/lib/tvweb/home.json` and applied to its view within a few seconds. **Use the default colours** clears the choice.
