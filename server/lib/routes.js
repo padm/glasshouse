@@ -1262,6 +1262,8 @@ function handleRequest(req, res) {
     // do, so a day-old copy beside a new page would show text the page no
     // longer has, or miss text it now does.
     var fresh = ext === '.html' || ext === '.json' || /(^|\/)i18n\.js$/.test(file);
+    // Carousel View's files change with home.html, which loads them: a day-old copy kept its look.
+    if (/^home-carousel\.(css|js)$/.test(path.basename(file))) fresh = true;
     var cacheHdr = fresh ? 'no-cache' : 'public, max-age=86400';
     var respondWithBuf = function (buf) {
       var etag = '"' + (displayVersionStr || '1') + '-' + buf.length.toString(16) + '"';
