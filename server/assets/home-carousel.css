@@ -6,7 +6,16 @@
    Chromium 38 (webOS 3) draws an outline square whatever the corners, so the
    rounded tiles are framed with a box-shadow instead. */
 
-.carousel #scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.32) 30%,rgba(0,0,0,.42) 62%,rgba(0,0,0,.7) 100%)}
+/* The wallpaper brighter than the other views have it, which dim it by the
+   time of day to between 0.55 and 0.72 (home.html's WALL_SLOTS) and darken it
+   again with their scrim: under both, a landscape showed on a TV as a near
+   black screen. Here it is lifted a quarter, darkened only behind the clock,
+   the weather and the foot, and the text sits on dark glass instead. */
+.carousel #wall{-webkit-filter:brightness(1.25);filter:brightness(1.25)}
+.carousel #scrim{background:radial-gradient(ellipse 38% 34% at 12% 15%,rgba(0,0,0,.42),rgba(0,0,0,0)),
+  radial-gradient(ellipse 24% 30% at 90% 15%,rgba(0,0,0,.36),rgba(0,0,0,0)),
+  linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(0,0,0,.32) 100%)}
+.carousel #now,.carousel .row h2,.carousel .tile,.carousel #ghBar{text-shadow:0 2px 14px rgba(0,0,0,.75)}
 
 /* The clock with a greeting over it on the left, the weather on the right. */
 .carousel #now{height:300px;padding:40px 112px 0;-webkit-align-items:flex-start;align-items:flex-start}
@@ -22,7 +31,7 @@
 #ghWeather .temp{font-family:'Outfit',sans-serif;font-size:84px;font-weight:300;line-height:1;letter-spacing:-1px}
 #ghWeather .place{font-size:28px;font-weight:600;margin-top:18px}
 #ghWeather .cond{font-size:24px;color:#c9c4bb;margin-top:10px}
-#ghWeather .src{font-size:15px;color:#8a857d;margin-top:12px}
+#ghWeather .src{font-size:15px;color:#c9c4bb;margin-top:12px}
 
 /* The rows from under the clock down, room left at the foot for All apps. */
 .carousel #rows{top:300px;bottom:76px}
@@ -30,27 +39,27 @@
 .carousel.rows-bottom #rows:before{-webkit-flex:1 1 0;flex:1 1 0}
 .carousel .row{margin-bottom:14px}
 .carousel .row h2{font-size:26px;font-weight:600;color:#ece7df;margin-bottom:8px}
-.carousel .row h2 span{font-weight:400;color:#a39d93}
+.carousel .row h2 span{font-weight:400;color:#d6d1c8}
 
 /* The Apps row in its glass frame. Its sides stay 22px, which the view's
    scrolling takes a row's padding to be. */
-.carousel .row[data-key="app"] .wrap{padding:14px 22px;border-radius:40px;background:rgba(255,255,255,.045);
+.carousel .row[data-key="app"] .wrap{padding:14px 22px;border-radius:40px;background:rgba(10,14,22,.24);
   border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(0,0,0,.35)}
 .carousel .wrap{padding-top:8px;padding-bottom:8px}
 .carousel .wrap .edge.l{background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
 .carousel .wrap .edge.r{background:linear-gradient(270deg,rgba(0,0,0,.5),rgba(0,0,0,0))}
 
-.carousel .tile{border-radius:18px;opacity:1;background:rgba(255,255,255,.07);
+.carousel .tile{border-radius:18px;opacity:1;background:rgba(14,18,26,.58);
   -webkit-transition:background-color .12s,box-shadow .12s,-webkit-transform .12s;transition:background-color .12s,box-shadow .12s,transform .12s}
 .carousel .row:not(.active) .tile{opacity:.9}
-.carousel .tile.focus{outline-color:transparent;background-color:rgba(255,255,255,.13);
+.carousel .tile.focus{outline-color:transparent;background-color:rgba(30,36,48,.78);
   box-shadow:0 0 0 3px #f4f1ea,0 14px 34px rgba(0,0,0,.5);-webkit-transform:scale(1.035);transform:scale(1.035)}
 .carousel.arranging .tile.focus{box-shadow:0 0 0 3px #e9ad55}
 .carousel.arranging .tile.held{box-shadow:none}
 .carousel .row .tile.hidden{opacity:.3}
 .carousel .row .tile.folded{opacity:.5}
 /* All apps in focus: the rows show no focus of their own. */
-.gh-bar .carousel #rows .tile.focus{box-shadow:none;-webkit-transform:none;transform:none;background-color:rgba(255,255,255,.07)}
+.gh-bar .carousel #rows .tile.focus{box-shadow:none;-webkit-transform:none;transform:none;background-color:rgba(14,18,26,.58)}
 
 /* App tiles: the icon on its own colour (ghFill), else on the glass. */
 .carousel .app{width:280px;height:158px;padding:0;margin-right:28px;overflow:hidden;text-align:center;
@@ -93,11 +102,11 @@
 /* All apps: along the foot, and the panel it opens. */
 .carousel #ghBar{display:-webkit-flex;display:flex;position:absolute;left:50%;bottom:16px;-webkit-transform:translateX(-50%);transform:translateX(-50%);
   -webkit-align-items:center;align-items:center;padding:9px 30px 9px 24px;border-radius:26px;font-size:22px;color:#d6d1c8;
-  background:rgba(255,255,255,.06);-webkit-transition:background-color .12s,box-shadow .12s;transition:background-color .12s,box-shadow .12s}
+  background:rgba(14,18,26,.58);-webkit-transition:background-color .12s,box-shadow .12s;transition:background-color .12s,box-shadow .12s}
 .carousel.arranging #ghBar,.carousel.folder #ghBar,.carousel.recents #ghBar,.carousel.finding #ghBar,.gh-all .carousel #ghBar{visibility:hidden}
 #ghBar:before{content:"";width:10px;height:10px;margin:-6px 18px 0 0;border:solid currentColor;border-width:0 2px 2px 0;
   -webkit-transform:rotate(45deg);transform:rotate(45deg)}
-.gh-bar .carousel #ghBar{color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 0 3px #f4f1ea}
+.gh-bar .carousel #ghBar{color:#fff;background:rgba(30,36,48,.85);box-shadow:0 0 0 3px #f4f1ea}
 
 .gh-all .carousel #ghAll{display:block;position:absolute;z-index:2;left:64px;right:64px;top:296px;bottom:56px;padding:44px 54px 0;
   border-radius:44px;background:rgba(12,15,22,.97);border:1px solid rgba(255,255,255,.13)}
