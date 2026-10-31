@@ -9,12 +9,12 @@
 /* The wallpaper brighter than the other views have it, which dim it by the
    time of day to between 0.55 and 0.72 (home.html's WALL_SLOTS) and darken it
    again with their scrim: under both, a landscape showed on a TV as a near
-   black screen. Here it is lifted a quarter, darkened only behind the clock,
+   black screen. Here it is lifted by two fifths, darkened only behind the clock,
    the weather and the foot, and the text sits on dark glass instead. */
-.carousel #wall{-webkit-filter:brightness(1.25);filter:brightness(1.25)}
-.carousel #scrim{background:radial-gradient(ellipse 38% 34% at 12% 15%,rgba(0,0,0,.42),rgba(0,0,0,0)),
-  radial-gradient(ellipse 24% 30% at 90% 15%,rgba(0,0,0,.36),rgba(0,0,0,0)),
-  linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(0,0,0,.32) 100%)}
+.carousel #wall{-webkit-filter:brightness(1.4);filter:brightness(1.4)}
+.carousel #scrim{background:radial-gradient(ellipse 38% 34% at 12% 15%,rgba(0,0,0,.32),rgba(0,0,0,0)),
+  radial-gradient(ellipse 24% 30% at 90% 15%,rgba(0,0,0,.28),rgba(0,0,0,0)),
+  linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(0,0,0,.22) 100%)}
 .carousel #now,.carousel .row h2,.carousel .tile,.carousel #ghBar{text-shadow:0 2px 14px rgba(0,0,0,.75)}
 
 /* The clock with a greeting over it on the left, the weather on the right. */
